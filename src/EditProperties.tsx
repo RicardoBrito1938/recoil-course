@@ -55,7 +55,7 @@ const editSize = selectorFamily<any, {dimension: 'width' | 'height'; id: number}
                 return
             }
 
-            const size = editPropertyState({path: `style.size.${dimension}`, id})
+            const size = editPropertyState({path: `style.size`, id})
             const {width, height} = get(size)
             const aspectRatio = width / height
 
@@ -110,6 +110,8 @@ const Section: React.FC<{heading: string}> = ({heading, children}) => {
 
 const SizeProperty = ({label, dimension, id}: {label: string; dimension: 'width' | 'height'; id: number}) => {
     const [value, setValue] = useRecoilState(editSize({dimension, id}))
+
+    console.log('#################', value)
 
     return <PropertyInput label={label} value={value} onChange={setValue} />
 }
